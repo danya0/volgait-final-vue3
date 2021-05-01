@@ -1,6 +1,9 @@
-import { createStore } from 'vuex'
+import { createStore, createLogger } from 'vuex'
+import AppModule from "./AppModule";
+import GalleryStateModule from "./GalleryStateModule";
 
 export default createStore({
+  plugins: [createLogger()],
   state: {
   },
   mutations: {
@@ -8,5 +11,7 @@ export default createStore({
   actions: {
   },
   modules: {
+    AppModule,
+    GalleryStateModule
   }
 })
