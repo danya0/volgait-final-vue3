@@ -1,0 +1,7 @@
+:root {
+    --main-bg-color: #1B1728;
+    --backhole: #150E1E;
+    --panel: #28253C;
+    --panel-alternative: #221D33;
+    --button: linear-gradient(90deg, #5E77E9 0%, #5E77E9 0.01%, #26A5F7 100%, #26A5F7 100%);
+}
