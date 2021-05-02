@@ -37,6 +37,7 @@ import GalleryView from "./GalleryView";
 import GalleryControl from "./GalleryControl";
 import GalleryImages from "./GalleryImages";
 import {mapActions, mapMutations, mapState} from "vuex";
+import checkMobile from "../js/responsive";
 
 export default {
   data() {
@@ -50,13 +51,14 @@ export default {
     setTimeout(() => {
       this.appears = false
     }, 2000)
+    checkMobile(this.setFullScreen)
   },
   computed: {
     ...mapState('GalleryStateModule', ['fullscreen', 'zoom', 'blocks', 'switchImage']),
     ...mapState('GalleryImagesModule', ['images', 'currentImage']),
   },
   methods: {
-    ...mapMutations('GalleryStateModule', ['toggleFullScreen', 'toggleBlocks', 'toggleZoom']),
+    ...mapMutations('GalleryStateModule', ['toggleFullScreen', 'toggleBlocks', 'toggleZoom', 'setFullScreen']),
     ...mapActions('GalleryStateModule', ['setSwitchImage']),
     ...mapActions('GalleryImagesModule', ['changeImage']),
     ...mapMutations('AppModule', ['closeApp']),
@@ -79,6 +81,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../styles/media";
 .gallery {
   position: relative;
   z-index: 3;
@@ -156,8 +159,18 @@ export default {
 
   &.hide-blocks {
     .gallery-images {
-      width: 0;
+      @media (min-width: 700px) {
+        width: 0;
+      }
+      @include mobile {
+        height: 0;
+      }
     }
+  }
+
+  // response
+  @include mobile {
+    flex-direction: column;
   }
 }
 </style>

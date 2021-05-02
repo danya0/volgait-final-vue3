@@ -6,6 +6,7 @@
         @click="$emit('closeEvent')"
     />
     <gallery-control-component
+        v-if="!mobile"
         alt="fullscreen"
         :image="fullscreen ? fullScreenOff : fullScreenOn"
         @click="$emit('fullEvent')"
@@ -32,6 +33,7 @@ import zoomIn from '../assets/IconZoomIn.svg'
 import zoomOut from '../assets/IconZoomOut.svg'
 import blocksImg from '../assets/IconBlocks.svg'
 import GalleryControlComponent from "./GalleryControlComponent";
+import checkMobile from "../js/responsive";
 
 export default {
   emits: ['closeEvent', 'fullEvent', 'zoomEvent', 'blocksEvent'],
@@ -43,17 +45,29 @@ export default {
       fullScreenOn,
       zoomIn,
       zoomOut,
-      blocksImg
+      blocksImg,
+      mobile: false,
     }
+  },
+  mounted() {
+    checkMobile(() => {
+      this.mobile = true;
+    })
   },
   components: {GalleryControlComponent}
 }
 </script>
 
 <style scoped lang="scss">
+@import "../styles/media";
   .gallery-control {
     display: flex;
     flex-direction: column;
     background: var(--panel-alternative);
+
+    @include mobile {
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 </style>
