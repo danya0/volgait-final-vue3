@@ -1,7 +1,9 @@
 <template>
   <main>
-    <app-button v-if="!opened" @click="openApp">Открыть</app-button>
-    <gallery v-show="opened"></gallery>
+    <transition name="button">
+      <app-button v-if="!opened" @click="openApp" class="button">Открыть</app-button>
+    </transition>
+    <gallery v-if="opened"></gallery>
   </main>
 </template>
 
@@ -21,22 +23,42 @@ export default {
 </script>
 
 <style lang="scss">
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    overflow: hidden;
-    color: #FFFFFF;
-  }
-  body, main {
-    margin: 0;
-    height: 100vh;
-    width: 100vw;
-  }
-  main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--main-bg-color);
-  }
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  color: #FFFFFF;
+}
+
+body, main {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--main-bg-color);
+}
+
+.button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button-enter-active,
+.button-leave-active {
+  transition: opacity .3s ease;
+}
+
+.button-enter-from,
+.button-leave-to {
+  opacity: 0;
+}
 </style>

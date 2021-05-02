@@ -1,16 +1,26 @@
 <template>
   <div class="gallery-images">
-    <gallery-images-component v-for="img in images" :image="img.image" :title="img.title"/>
+    <gallery-images-component
+        v-for="(img, index) in images"
+        :image="img.image"
+        :title="img.title"
+        :active="index === selectedImage"
+        @click="$emit('imageClick', index)"
+    />
   </div>
 </template>
 
 <script>
 import GalleryImagesComponent from "./GalleryImagesComponent";
+import {mapState} from "vuex";
+
 export default {
-  components: {GalleryImagesComponent},
+  emits: ['imageClick'],
   props: {
-    images: Array,
-  }
+    images: Array
+  },
+  computed: mapState('GalleryImagesModule', ['selectedImage']),
+  components: {GalleryImagesComponent}
 }
 </script>
 
@@ -22,5 +32,6 @@ export default {
   width: 148px;
   flex-shrink: 0;
   background: var(--panel);
+  overflow-y: auto;
 }
 </style>

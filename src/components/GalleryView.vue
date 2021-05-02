@@ -14,12 +14,10 @@
 </template>
 
 <script>
-import {computed} from "vue";
 export default {
   props: ['image', 'title', 'subtitle'],
   computed: {
     imageStyle() {
-      console.log('image', this.image)
       return {
         backgroundImage: `url("${this.image}")`
       }
@@ -30,10 +28,21 @@ export default {
 
 <style scoped lang="scss">
 .gallery-view {
+  position: relative;
   background: var(--backhole);
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+
+  // for switch image animation
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    transform: translateX(100%);
+    background: var(--backhole);
+  }
 
   .view {
     flex-grow: 1;

@@ -3,7 +3,8 @@ export default {
   state: {
     fullscreen: false,
     zoom: false,
-    blocks: true
+    blocks: true,
+    switchImage: false
   },
   mutations: {
     toggleFullScreen(state) {
@@ -15,5 +16,16 @@ export default {
     toggleBlocks(state) {
       state.blocks = !state.blocks
     },
+    toggleSwitchImage(state) {
+      state.switchImage = !state.switchImage
+    }
+  },
+  actions: {
+    setSwitchImage({commit}) {
+      commit('toggleSwitchImage')
+      setTimeout(() => {
+        commit('toggleSwitchImage')
+      }, 1000)
+    }
   }
 }

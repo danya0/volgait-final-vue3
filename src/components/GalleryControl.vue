@@ -6,21 +6,21 @@
         @click="$emit('closeEvent')"
     />
     <gallery-control-component
-        alt="close"
+        alt="fullscreen"
         :image="fullscreen ? fullScreenOff : fullScreenOn"
         @click="$emit('fullEvent')"
     />
     <gallery-control-component
-        alt="close"
+        alt="zoom"
         :image="zoom ? zoomOut : zoomIn"
         @click="$emit('zoomEvent')"
     />
     <gallery-control-component
-        alt="close"
+        alt="blocksImg"
         :image="blocksImg"
         @click="$emit('blocksEvent')"
     />
-    <gallery-control-component :nohover="true" >1/2</gallery-control-component>
+    <gallery-control-component :nohover="true" >{{ currentImage }}/{{ numberOfPictures }}</gallery-control-component>
   </div>
 </template>
 
@@ -35,7 +35,7 @@ import GalleryControlComponent from "./GalleryControlComponent";
 
 export default {
   emits: ['closeEvent', 'fullEvent', 'zoomEvent', 'blocksEvent'],
-  props: ['fullscreen', 'zoom'],
+  props: ['fullscreen', 'zoom', 'currentImage', 'numberOfPictures'],
   data() {
     return {
       close,
