@@ -21,6 +21,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../styles/media";
+
 $bg: #221D33;
   .control-component {
     transition: background-color .3s ease;
@@ -32,6 +34,10 @@ $bg: #221D33;
 
     &:not(&:first-child) {
       border-top: 2px solid #383B52;
+
+      @include mobile {
+        border: none;
+      }
     }
 
     font-family: Montserrat, sans-serif;

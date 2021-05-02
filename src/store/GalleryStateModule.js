@@ -18,6 +18,9 @@ export default {
     },
     toggleSwitchImage(state) {
       state.switchImage = !state.switchImage
+    },
+    setFullScreen(state) {
+      state.fullscreen = true
     }
   },
   actions: {

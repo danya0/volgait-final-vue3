@@ -14,6 +14,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "../styles/media";
+
 .image-component {
   position: relative;
   cursor: pointer;
@@ -21,6 +23,10 @@ export default {
   img {
     width: 100%;
     height: 100%;
+    @include mobile {
+      height: 90px;
+      width: auto;
+    }
   }
 
   &:after {
