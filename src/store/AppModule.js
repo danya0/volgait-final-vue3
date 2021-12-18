@@ -10,5 +10,5 @@ export default {
     closeApp(state) {
       state.opened = false
     }
-  }
+  },
 }
